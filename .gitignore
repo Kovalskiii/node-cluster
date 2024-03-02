@@ -3,3 +3,4 @@ build/*
 .idea/
 /process.env
 .vscode/
+.DS_Store
