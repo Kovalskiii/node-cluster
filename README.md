@@ -25,3 +25,5 @@
 - execute command: ```npx prettier --write "**/*.js"```
 - or 
 - execute command: ```npx prettier --list-different "**/*.js"```
+
+![example.png](example.png)
