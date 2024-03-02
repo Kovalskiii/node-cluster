@@ -1,0 +1,68 @@
+--------------------------------------------------------------------------
+Run server
+- execute command: `npm run local`
+- execute command: `npm run prod`
+
+MONGO_DB_CONNECTION_STRING_DEV=mongodb://127.0.0.1:27017/eosio-transactions-service-dev
+MONGO_DB_CONNECTION_STRING_PROD=mongodb://127.0.0.1:27017/eosio-transactions-service-prod
+--------------------------------------------------------------------------
+//Add Transaction Doc To The Queue
+
+POST http://localhost:7001/transactions-service-api/docQueue/addTransactionDocToTheQueue
+
+Body: 
+{
+  "isBatch": false,
+  "id": "a0761eaa-0016-4e19-ae77-5dd56613ea3c",
+  "path": "19A.csv",
+  "data": [
+    {
+      "id": "50da5408-8650-4a3d-afcf-3c5e3acbf193",
+      "to": "theterminal3",
+      "amount": 0.0001,
+      "token": "EOS",
+      "contract": "eosio.token",
+      "memo": "66666666",
+      "tx_id": "",
+      "checked": false,
+      "document_id": "a0761eaa-0016-4e19-ae77-5dd56613ea3c"
+    }
+  ]
+}
+--------------------------------------------------------------------------
+
+// Get Failed Transactions
+
+Due to this request we can get all failed transactions
+filter by:
+limit, pageNumber, docId - all are optional, by default limit is 20.
+
+GET http://localhost:7001/transactions-service-api/failedTransaction/all/?limit=20&pageNumber=1&docId=a0761eaa-0016-4e19-ae77-5dd56613ea3c
+
+--------------------------------------------------------------------------
+
+// Get Failed Transaction Docs
+
+Due to this request we can get all failed transaction documents
+filter by:
+limit, pageNumber - all are optional, by default limit is 20.
+
+GET http://localhost:7001/transactions-service-api/failedTransactionDoc/all/?limit=20&pageNumber=1
+
+--------------------------------------------------------------------------
+
+Socket 
+const ws = new WebSocket('ws://localhost:7001') // default
+
+
+Server: 
+event: 'clientId', payload: clientId
+event: 'transactionDocsList', payload: transactionDocsRecordsArr
+event: 'error', payload: 'Some error message'
+
+
+Client: 
+event: 'transactionDocOpened', payload: { docId: 'a0761eaa-0016-4e19-ae77-5dd56613ea3c', clientId: 'a0761eaa-0016-4e19-ae77-5dd56613ea3c' } 
+event: 'transactionDocClosed', payload: { docId: 'a0761eaa-0016-4e19-ae77-5dd56613ea3c', clientId: 'a0761eaa-0016-4e19-ae77-5dd56613ea3c' } 
+
+

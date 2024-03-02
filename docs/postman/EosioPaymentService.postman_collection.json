@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "3a9d1491-5b07-47e1-9967-4da23a9e3b6c",
+		"name": "EosioPaymentService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11449882"
+	},
+	"item": [
+		{
+			"name": "Transaction Doc Queue",
+			"item": [
+				{
+					"name": "Add Transaction Doc To The Queue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isBatch\": false,\n  \"id\": \"a0761eaa-0016-4e19-ae77-5dd56613ea3c\",\n  \"path\": \"19A.csv\",\n  \"data\": [\n    {\n      \"id\": \"50da5408-8650-4a3d-afcf-3c5e3acbf193\",\n      \"to\": \"theterminal3\",\n      \"amount\": 0.0001,\n      \"token\": \"EOS\",\n      \"contract\": \"eosio.token\",\n      \"memo\": \"66666666\",\n      \"checked\": false,\n      \"document_id\": \"a0761eaa-0016-4e19-ae77-5dd56613ea3c\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7001/transactions-service-api/docQueue/addTransactionDocToTheQueue",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"transactions-service-api",
+								"docQueue",
+								"addTransactionDocToTheQueue"
+							]
+						},
+						"description": "Due to this request we can add document to the processing queue"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Failer Transaction",
+			"item": [
+				{
+					"name": "Get Failed Transactions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7001/transactions-service-api/failedTransaction/all/?limit=20&pageNumber=1&docId=a0761eaa-0016-4e19-ae77-5dd56613ea3c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"transactions-service-api",
+								"failedTransaction",
+								"all",
+								""
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "docId",
+									"value": "a0761eaa-0016-4e19-ae77-5dd56613ea3c"
+								}
+							]
+						},
+						"description": "Due to this request we can get all failed transactions\n\nfilter by:  \nlimit, pageNumber, docId - all are optional, by default limit is 20."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Failed Transaction Doc",
+			"item": [
+				{
+					"name": "Get Failed Transaction Docs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:7001/transactions-service-api/failedTransactionDoc/all/?limit=20&pageNumber=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7001",
+							"path": [
+								"transactions-service-api",
+								"failedTransactionDoc",
+								"all",
+								""
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "pageNumber",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Due to this request we can get all failed transaction documents\n\nfilter by:  \nlimit, pageNumber - all are optional, by default limit is 20."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
