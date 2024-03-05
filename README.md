@@ -19,7 +19,6 @@
 ## 3).env
 
 - PORT - indicates port on which will work server
-- MONGO_DB_CONNECTION_STRING - mongodb database connection string
 
 ## 4) Prettier 
 - execute command: ```npx prettier --write "**/*.js"```
