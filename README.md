@@ -8,7 +8,7 @@
 
 ---
 
-## 4)To start locally:
+## 2)To start locally:
 
 - open terminal;
 - execute command: `npm install` (need to be executed once after project clone - to install packages);
@@ -16,12 +16,12 @@
 - execute command: `npm run prod`
 ---
 
-## 5).env
+## 3).env
 
 - PORT - indicates port on which will work server
 - MONGO_DB_CONNECTION_STRING - mongodb database connection string
 
-## 6) Prettier 
+## 4) Prettier 
 - execute command: ```npx prettier --write "**/*.js"```
 - or 
 - execute command: ```npx prettier --list-different "**/*.js"```
